@@ -7,18 +7,17 @@
  * All required files with function
  */
 
+require plugin_dir_path( __FILE__ ) . 'inc/config.php';
+require plugin_dir_path( __FILE__ ) . 'inc/sql.php';
+require plugin_dir_path( __FILE__ ) . 'inc/sqlRequestsList.php';
+require plugin_dir_path( __FILE__ ) . 'inc/restroute.php';
+require plugin_dir_path( __FILE__ ) . 'inc/helpers.php';
 require plugin_dir_path( __FILE__ ) . 'inc/posts.php';
 require plugin_dir_path( __FILE__ ) . 'inc/users.php';
 
 add_action('rest_api_init', function () {
-    register_rest_route('w1/v1', 'posts', [
-        'methods' => 'GET',
-        'callback' => 'w1_posts',
-    ]);
-    register_rest_route('w1/v1', 'users', [
-        'methods' => 'GET',
-        'callback' => 'w1_users',
-    ]);
+    rest_route('posts', 'GET', 'w1_posts');
+    rest_route('users', 'GET', 'w1_users');
 });
 
 function w1_posts()
